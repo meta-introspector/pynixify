@@ -14,7 +14,7 @@ let
 
   lookUpSource = name: value:
     let 
-      d = {attr=name; version=value.version;};
+      d = {attr=name; inherit (value) version;};
     in
     if !value ? src then 
       [ (d // {src=null;})]
@@ -80,5 +80,5 @@ in pipe [
   sources
   # keepPypi
   usePypiNameIfPossible
-  (lib.groupBy (x: x.pypiName))
+  (builtins.groupBy (x: x.pypiName))
 ]

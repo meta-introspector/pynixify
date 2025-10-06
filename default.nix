@@ -8,7 +8,7 @@ let
 in { nixfmt ? null, runMypy ? true }:
 
 let
-  chosenNixfmt = if isNull nixfmt then outerNixfmt else nixfmt;
+  chosenNixfmt = if (nixfmt == null) then outerNixfmt else nixfmt;
 
   # Use pynixify's generated expression, but override it to add additional
   # dependencies and to convert it to an application in order to improve the
